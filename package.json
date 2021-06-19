@@ -10,8 +10,8 @@
     "build": "webpack --config webpack.prod.js",
     "test": "karma start",
     "e2e": "codeceptjs run",
-    "lint": "npx eslint \"{src,specs}/**/*.{js,mjs,ts,tsx}\" --fix",
-    "fmt": "npx prettier --write \"{src,specs}/**/*.{js,mjs,ts,tsx,css,html}\"",
+    "lint": "npx eslint \"{src,specs,e2e}/**/*.{js,mjs,ts,tsx}\" --fix",
+    "fmt": "npx prettier --write \"{src,specs,e2e}/**/*.{js,mjs,ts,tsx,css,html}\"",
     "build-image": "node sharp.js",
     "optimize-image": "node imagemin.js"
   },

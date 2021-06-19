@@ -1,0 +1,27 @@
+.entering {
+  animation: 0.5s fadeIn ease-in;
+}
+
+.leaving {
+  animation: 0.5s fadeOut linear;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

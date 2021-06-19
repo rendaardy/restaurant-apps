@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="description" content="Find the best restaurant near you" />
+    <meta name="theme-color" content="#eeebdd" />
+    <title>Megabucket</title>
+    <script src="https://kit.fontawesome.com/d301366b6b.js" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-content" router-ignore>Main Content</a>
+    <div class="navbar" role="menubar">
+      <a class="navbar__toggle" href="#" role="button" aria-label="navigation-menu">≡</a>
+      <a class="navbar__brand" href="/" tabindex="-1">Megabucket</a>
+      <nav class="navbar__nav">
+        <a class="navbar__nav-item" href="/">Home</a>
+        <a class="navbar__nav-item" href="/favorite">Favorites</a>
+        <a
+          class="navbar__nav-item"
+          href="https://github.com/rendaardy"
+          target="_blank"
+          rel="noreferrer"
+        >
+          About Us
+        </a>
+      </nav>
+    </div>
+    <div id="router-outlet"></div>
+    <footer class="footer">
+      <p class="footer__body">Copyright © 2021 - Megabucket</p>
+    </footer>
+  </body>
+</html>

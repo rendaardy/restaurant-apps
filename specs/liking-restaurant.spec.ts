@@ -43,19 +43,11 @@ describe('Liking a restaurant', () => {
     // expect(likeButton).toBeTruthy();
   });
 
-  it('should render the toggled button when restaurant is in the favorite list', () => {
-    
-  });
+  it('should render the toggled button when restaurant is in the favorite list', () => {});
 
-  it('should be able to add a restaurant to the favorite list', () => {
-    
-  });
+  it('should be able to add a restaurant to the favorite list', () => {});
 
-  it('should be able to delete a restaurant in the favorite list', () => {
-    
-  });
+  it('should be able to delete a restaurant in the favorite list', () => {});
 
-  it('should not add a restaurant when it\'s already in the favorite list', () => {
-    
-  });
+  it("should not add a restaurant when it's already in the favorite list", () => {});
 });

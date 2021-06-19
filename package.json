@@ -73,6 +73,7 @@
     "inversify": "^5.1.1",
     "lit": "^2.0.0-rc.2",
     "reflect-metadata": "^0.1.13",
+    "router-slot": "^1.5.4",
     "workbox-cacheable-response": "^6.1.5",
     "workbox-core": "^6.1.5",
     "workbox-expiration": "^6.1.5",

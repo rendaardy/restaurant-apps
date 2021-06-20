@@ -2,8 +2,6 @@ import 'reflect-metadata';
 
 import '../src/scripts/pages/detailpage';
 
-import { Router } from '@vaadin/router';
-
 import DetailPage from '../src/scripts/pages/detailpage';
 import { RestaurantService } from '../src/scripts/shared/restaurants-service';
 import { FavoriteService } from '../src/scripts/shared/favorite-service';
@@ -12,11 +10,9 @@ describe('Liking a restaurant', () => {
   let restaurantService: RestaurantService;
   let favoriteService: FavoriteService;
   let detailPage: DetailPage;
-  let router: Router;
 
   beforeEach(() => {
     document.body.innerHTML = '<div id="router-outlet"></div>';
-    router = new Router(document.querySelector('#router-outlet'));
 
     restaurantService = new RestaurantService();
     favoriteService = new FavoriteService();

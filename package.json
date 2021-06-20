@@ -68,7 +68,6 @@
     "workbox-webpack-plugin": "^6.1.5"
   },
   "dependencies": {
-    "@vaadin/router": "^1.7.4",
     "flexible-rating": "github:rendaardy/flexible-rating#0c956f83051ecc42fe416b7c704a9c83cc66714e",
     "idb": "^6.0.0",
     "inversify": "^5.1.1",

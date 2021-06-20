@@ -4,13 +4,12 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { Restaurant } from '../model/restaurant';
 import { IFavoriteService, TYPES } from '../shared/restaurant-interface';
 import { container } from '../shared/container';
-import { Router } from '../routes';
 
 import './components/card';
 import './components/dual-ring';
 
 @customElement('mb-favoritepage')
-export class FavoritePage extends LitElement {
+export default class FavoritePage extends LitElement {
   @property({ attribute: false })
   restaurants: Restaurant[] = [];
 
@@ -40,7 +39,7 @@ export class FavoritePage extends LitElement {
       this.restaurants = await this.favoriteService.getRestaurants();
     } catch (err) {
       console.log(err);
-      Router.go('/error');
+      history.pushState(null, '', '/error');
     } finally {
       this.showLoading = false;
     }

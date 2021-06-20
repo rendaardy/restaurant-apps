@@ -14,9 +14,9 @@
     />
   </head>
   <body>
-    <a class="skip-content" router-ignore>Main Content</a>
+    <a class="skip-content" data-router-slot="disabled">Main Content</a>
     <div class="navbar" role="menubar">
-      <a class="navbar__toggle" href="#" role="button" aria-label="navigation-menu">≡</a>
+      <a class="navbar__toggle" href="#" role="button" aria-label="navigation-menu" data-router-slot="disabled">≡</a>
       <a class="navbar__brand" href="/" tabindex="-1">Megabucket</a>
       <nav class="navbar__nav">
         <a class="navbar__nav-item" href="/">Home</a>
@@ -26,13 +26,15 @@
           href="https://github.com/rendaardy"
           target="_blank"
           rel="noreferrer"
+          data-router-slot="disabled"
         >
           About Us
         </a>
       </nav>
     </div>
-    <div id="router-outlet"></div>
+    <mb-app></mb-app>
     <footer class="footer">
+      <a class="footer__scroll-to-top" role="button" data-router-slot="disabled">Back to the top</a>
       <p class="footer__body">Copyright © 2021 - Megabucket</p>
     </footer>
   </body>

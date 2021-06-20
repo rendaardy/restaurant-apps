@@ -43,7 +43,7 @@ async function main(): Promise<void> {
     });
   });
 
-  window.addEventListener('changestate', () => {
+  window.addEventListener('navigationend', () => {
     requestAnimationFrame(() => {
       window.scrollTo(0, 0);
     });

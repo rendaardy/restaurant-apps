@@ -1,15 +1,15 @@
 import 'reflect-metadata';
+import 'router-slot';
 
 import '../styles/main.css';
 
 import './shared/container';
 
+import './pages/app';
 import './pages/homepage';
 import './pages/detailpage';
 import './pages/favoritepage';
 import './pages/not-found';
-
-import './routes';
 
 async function registerSW(): Promise<void> {
   if ('serviceWorker' in navigator) {
@@ -32,6 +32,21 @@ async function main(): Promise<void> {
     e.preventDefault();
     e.stopPropagation();
     drawer?.classList.toggle('open');
+  });
+
+  const scrollToTop = document.querySelector('.footer__scroll-to-top');
+  scrollToTop?.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+  });
+
+  window.addEventListener('navigationend', () => {
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
   });
 
   await registerSW();

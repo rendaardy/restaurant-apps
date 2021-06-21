@@ -8,10 +8,11 @@
   "scripts": {
     "start-dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "check": "tsc --noEmit",
     "test": "karma start",
     "e2e": "codeceptjs run",
-    "lint": "npx eslint \"{src,specs}/**/*.{js,mjs,ts,tsx}\" --fix",
-    "fmt": "npx prettier --write \"{src,specs}/**/*.{js,mjs,ts,tsx,css,html}\"",
+    "lint": "npx eslint \"{src,specs,e2e}/**/*.{js,mjs,ts,tsx}\" --fix",
+    "fmt": "npx prettier --write \"{src,specs,e2e}/**/*.{js,mjs,ts,tsx,css,html}\"",
     "build-image": "node sharp.js",
     "optimize-image": "node imagemin.js"
   },
@@ -67,12 +68,12 @@
     "workbox-webpack-plugin": "^6.1.5"
   },
   "dependencies": {
-    "@vaadin/router": "^1.7.4",
     "flexible-rating": "github:rendaardy/flexible-rating#0c956f83051ecc42fe416b7c704a9c83cc66714e",
     "idb": "^6.0.0",
     "inversify": "^5.1.1",
     "lit": "^2.0.0-rc.2",
     "reflect-metadata": "^0.1.13",
+    "router-slot": "^1.5.4",
     "workbox-cacheable-response": "^6.1.5",
     "workbox-core": "^6.1.5",
     "workbox-expiration": "^6.1.5",

@@ -2,8 +2,8 @@ import '../../styles/detailpage.css';
 
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
+import { Params, queryParentRouterSlot } from 'router-slot';
 
-import { router, Router } from '../routes';
 import { Restaurant, CustomerReview } from '../model/restaurant';
 import { IRestaurantService, IFavoriteService, TYPES } from '../shared/restaurant-interface';
 import { container } from '../shared/container';
@@ -14,7 +14,7 @@ import { LikeButton } from './components/like-button';
 import './components/like-button';
 
 @customElement('mb-detailpage')
-export class DetailPage extends LitElement {
+export default class DetailPage extends LitElement {
   @property({ attribute: false })
   restaurant?: Restaurant;
 
@@ -44,9 +44,7 @@ export class DetailPage extends LitElement {
       this.favoriteService = container.get<IFavoriteService>(TYPES.FAVORITE_SERVICE);
     }
 
-    if (!this.restaurantId || this.restaurantId === '') {
-      this.restaurantId = String(router.location.params['id']);
-    }
+    this.restaurantId = this.params?.id ?? '';
 
     // Set skip content button
     const skipContent = document.querySelector<HTMLAnchorElement>('.skip-content');
@@ -66,7 +64,7 @@ export class DetailPage extends LitElement {
       }
     } catch (err) {
       console.log(err);
-      Router.go('/error');
+      history.pushState(null, '', '/error');
     }
 
     this.customerReviews = this.restaurant?.customerReviews;
@@ -75,6 +73,10 @@ export class DetailPage extends LitElement {
     if (this.likeButton && isOn) {
       this.likeButton.on = isOn;
     }
+  }
+
+  get params(): Params | undefined {
+    return queryParentRouterSlot(this)?.match?.params;
   }
 
   async onFavoriteToggle(): Promise<void> {

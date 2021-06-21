@@ -1,7 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 
-import { Router } from '../routes';
 import { Restaurant } from '../model/restaurant';
 import { IRestaurantService, TYPES } from '../shared/restaurant-interface';
 import { container } from '../shared/container';
@@ -10,7 +9,7 @@ import './components/card';
 import './components/dual-ring';
 
 @customElement('mb-homepage')
-export class HomePage extends LitElement {
+export default class HomePage extends LitElement {
   @property({ attribute: false })
   restaurants: Restaurant[] = [];
 
@@ -46,7 +45,7 @@ export class HomePage extends LitElement {
       this.restaurants = await this.restaurantService.getRestaurants();
     } catch (err) {
       console.log(err);
-      Router.go('/error');
+      history.pushState(null, '', '/error');
     } finally {
       this.showLoading = false;
     }

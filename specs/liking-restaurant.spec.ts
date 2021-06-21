@@ -5,45 +5,103 @@ import '../src/scripts/pages/detailpage';
 import DetailPage from '../src/scripts/pages/detailpage';
 import { RestaurantService } from '../src/scripts/shared/restaurants-service';
 import { FavoriteService } from '../src/scripts/shared/favorite-service';
+import { Restaurant } from '../src/scripts/model/restaurant';
 
-describe('Liking a restaurant', () => {
+describe('Detail page', () => {
   let restaurantService: RestaurantService;
   let favoriteService: FavoriteService;
   let detailPage: DetailPage;
+  let dummyRestaurant: Restaurant;
 
   beforeEach(() => {
-    document.body.innerHTML = '<div id="router-outlet"></div>';
-
     restaurantService = new RestaurantService();
     favoriteService = new FavoriteService();
-
-    restaurantService = spyOnAllFunctions<RestaurantService>(restaurantService);
-    favoriteService = spyOnAllFunctions<FavoriteService>(favoriteService);
     detailPage = new DetailPage(restaurantService, favoriteService);
+
+    dummyRestaurant = {
+      id: '1',
+      name: 'Restaurant A',
+      city: 'Wakanda',
+      rating: 5,
+      description: '',
+      address: '',
+      smallPicture: '',
+      mediumPicture: '',
+      largePicture: '',
+      menus: { foods: [], drinks: [] },
+      categories: [],
+      customerReviews: [],
+    };
   });
 
   afterEach(() => {
-    document.body.removeChild(detailPage);
+    if (document.body.contains(detailPage)) {
+      document.body.removeChild(detailPage);
+    }
   });
 
-  fit('should render the untoggled button when a restaurant is not in the favorite list', () => {
-    detailPage.restaurantId = '1';
-    if (detailPage.restaurant) detailPage.restaurant.name = 'Test';
+  it('should render the untoggled button when a restaurant is not in the favorite list', () => {
     document.body.appendChild(detailPage);
 
-    expect(document.querySelector('#router-outlet')).toBeTruthy();
-
-    // expect(detailPage.hasChildNodes()).toBeFalse();
-
-    // const likeButton = document.querySelector('mb-like-button[aria-label="Like this movie"]');
-    // expect(likeButton).toBeTruthy();
+    // We'll make sure the page is fully rendered so we can access
+    // DOM element inside web component.
+    window.addEventListener('load', () => {
+      const likeButton = detailPage?.renderRoot.querySelector('mb-like-button');
+      expect(likeButton).toBeTruthy();
+      expect(likeButton?.getAttribute('aria-label')).toEqual('Like this movie');
+    });
   });
 
-  it('should render the toggled button when restaurant is in the favorite list', () => {});
+  it('should render the toggled button when restaurant is in the favorite list', () => {
+    spyOn(favoriteService, 'getRestaurant').withArgs('1').and.resolveTo(dummyRestaurant);
+    spyOn(favoriteService, 'hasRestaurant').withArgs('1').and.resolveTo(true);
+    detailPage.restaurantId = '1';
+    document.body.appendChild(detailPage);
 
-  it('should be able to add a restaurant to the favorite list', () => {});
+    window.addEventListener('load', () => {
+      const likeButton = detailPage.renderRoot.querySelector('mb-like-button');
 
-  it('should be able to delete a restaurant in the favorite list', () => {});
+      expect(favoriteService.getRestaurant).toHaveBeenCalledWith('1');
+      expect(favoriteService.hasRestaurant).toHaveBeenCalledWith('1');
+      expect(likeButton).toBeTruthy();
+      expect(likeButton?.getAttribute('aria-label')).toEqual('Dislike this movie');
+    });
+  });
 
-  it("should not add a restaurant when it's already in the favorite list", () => {});
+  it('should be able to add a restaurant to the favorite list', () => {
+    spyOn(restaurantService, 'getRestaurant').withArgs('1').and.resolveTo(dummyRestaurant);
+    spyOn(favoriteService, 'putRestaurant').withArgs(dummyRestaurant);
+    detailPage.restaurantId = '1';
+    document.body.appendChild(detailPage);
+
+    window.addEventListener('load', () => {
+      expect(restaurantService.getRestaurant).toHaveBeenCalledWith('1');
+
+      const likeButton = detailPage.renderRoot.querySelector('mb-like-button');
+      likeButton?.dispatchEvent(new Event('click'));
+
+      expect(favoriteService.putRestaurant).toHaveBeenCalledWith(dummyRestaurant);
+      expect(likeButton?.getAttribute('aria-label')).toEqual('Dislike this movie');
+    });
+  });
+
+  it('should be able to delete a restaurant in the favorite list', () => {
+    spyOn(favoriteService, 'getRestaurant').withArgs('1').and.resolveTo(dummyRestaurant);
+    spyOn(favoriteService, 'deleteRestaurant').withArgs('1');
+    detailPage.restaurantId = '1';
+    document.body.appendChild(detailPage);
+
+    window.addEventListener('load', () => {
+      expect(favoriteService.getRestaurant).toHaveBeenCalledWith('1');
+
+      const likeButton = detailPage.renderRoot.querySelector('mb-like-button');
+      expect(likeButton).toBeTruthy();
+      expect(likeButton?.getAttribute('aria-label')).toEqual('Dislike this movie');
+
+      likeButton?.dispatchEvent(new Event('click'));
+
+      expect(favoriteService.deleteRestaurant).toHaveBeenCalledWith('1');
+      expect(likeButton?.getAttribute('aria-label')).toEqual('Like this movie');
+    });
+  });
 });

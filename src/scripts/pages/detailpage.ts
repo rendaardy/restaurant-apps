@@ -64,7 +64,7 @@ export default class DetailPage extends LitElement {
       }
     } catch (err) {
       console.log(err);
-      history.pushState(null, '', '/error');
+      history.replaceState(null, '', '/error');
     }
 
     this.customerReviews = this.restaurant?.customerReviews;

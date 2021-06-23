@@ -45,7 +45,7 @@ export default class HomePage extends LitElement {
       this.restaurants = await this.restaurantService.getRestaurants();
     } catch (err) {
       console.log(err);
-      history.pushState(null, '', '/error');
+      history.replaceState(null, '', '/error');
     } finally {
       this.showLoading = false;
     }

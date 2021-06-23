@@ -39,7 +39,7 @@ export default class FavoritePage extends LitElement {
       this.restaurants = await this.favoriteService.getRestaurants();
     } catch (err) {
       console.log(err);
-      history.pushState(null, '', '/error');
+      history.replaceState(null, '', '/error');
     } finally {
       this.showLoading = false;
     }

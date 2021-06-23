@@ -1,5 +1,9 @@
 require('ts-node/register');
 
+const { setHeadlessWhen } = require('@codeceptjs/configure');
+
+setHeadlessWhen(process.env.HEADLESS);
+
 exports.config = {
   tests: 'e2e/**/*.spec.ts',
   output: 'e2e/outputs',
@@ -7,7 +11,8 @@ exports.config = {
     Playwright: {
       url: 'http://localhost:8080',
       show: true,
-      browser: 'chromium'
+      browser: 'chromium',
+      waitForNavigation: 'networkidle0'
     }
   },
   include: {

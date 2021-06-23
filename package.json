@@ -10,7 +10,7 @@
     "build": "webpack --config webpack.prod.js",
     "check": "tsc --noEmit",
     "test": "karma start",
-    "e2e": "codeceptjs run",
+    "e2e": "codeceptjs run --steps",
     "lint": "npx eslint \"{src,specs,e2e}/**/*.{js,mjs,ts,tsx}\" --fix",
     "fmt": "npx prettier --write \"{src,specs,e2e}/**/*.{js,mjs,ts,tsx,css,html}\"",
     "build-image": "node sharp.js",

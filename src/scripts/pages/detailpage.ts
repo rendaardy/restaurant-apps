@@ -116,8 +116,8 @@ export default class DetailPage extends LitElement {
           <h1 class="display-1">
             ${this.restaurant?.name}
             <mb-like-button
-              aria-label-on="Dislike this movie"
-              aria-label-off="Like this movie"
+              aria-label-on="Dislike this restaurant"
+              aria-label-off="Like this restaurant"
               @mb-like-button:change="${this.onFavoriteToggle}"
             >
             </mb-like-button>

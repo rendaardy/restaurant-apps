@@ -26,7 +26,7 @@ const appRoutes: IRoute[] = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: '/error',
   },
 ];
 

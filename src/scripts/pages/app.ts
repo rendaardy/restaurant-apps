@@ -39,10 +39,6 @@ export default class App extends LitElement {
     this.routerSlot.add(appRoutes);
   }
 
-  updated(): void {
-    this.routerSlot.render();
-  }
-
   protected createRenderRoot(): Element | ShadowRoot {
     return this;
   }

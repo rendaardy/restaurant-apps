@@ -14,6 +14,12 @@ module.exports = function(config) {
     // available frameworks: https://www.npmjs.com/search?q=keywords:karma-adapter
     frameworks: ['jasmine', 'webpack'],
 
+    client: {
+      jasmine: {
+        timeoutInterval: 5000,
+      },
+    },
+
 
     // list of files / patterns to load in the browser
     files: [
@@ -38,7 +44,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['spec'],
+    reporters: ['progress'],
 
 
     // web server port

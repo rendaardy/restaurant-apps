@@ -11,6 +11,7 @@ const appRoutes: IRoute[] = [
   {
     path: 'favorite',
     component: () => import('./favoritepage'),
+    pathMatch: 'suffix',
   },
   {
     path: 'favorite/:id',

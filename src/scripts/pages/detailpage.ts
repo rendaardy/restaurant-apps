@@ -28,6 +28,7 @@ export default class DetailPage extends LitElement {
   likeButton?: LikeButton;
 
   restaurantId = '';
+  location = '';
 
   constructor(
     private restaurantService: IRestaurantService,
@@ -44,7 +45,9 @@ export default class DetailPage extends LitElement {
       this.favoriteService = container.get<IFavoriteService>(TYPES.FAVORITE_SERVICE);
     }
 
-    this.restaurantId = this.params?.id ?? '';
+    if (!this.restaurantId || this.restaurantId === '') {
+      this.restaurantId = this.params?.id ?? '';
+    }
 
     // Set skip content button
     const skipContent = document.querySelector<HTMLAnchorElement>('.skip-content');
@@ -56,10 +59,14 @@ export default class DetailPage extends LitElement {
   async firstUpdated(): Promise<void> {
     await import(/* webpackChunkName: "flexible-rating" */ 'flexible-rating');
 
+    if (!this.location || this.location === '') {
+      this.location = window.location.pathname;
+    }
+
     try {
-      if (window.location.pathname.startsWith('/detail')) {
+      if (this.location.startsWith('/detail')) {
         this.restaurant = await this.restaurantService.getRestaurant(this.restaurantId);
-      } else if (window.location.pathname.startsWith('/favorite')) {
+      } else if (this.location.startsWith('/favorite')) {
         this.restaurant = await this.favoriteService.getRestaurant(this.restaurantId);
       }
     } catch (err) {
@@ -82,11 +89,23 @@ export default class DetailPage extends LitElement {
   async onFavoriteToggle(): Promise<void> {
     const isOn = this.likeButton?.on;
     if (isOn) {
-      if (this.restaurant) {
-        await (this.favoriteService as FavoriteService).putRestaurant(this.restaurant);
+      try {
+        if (this.restaurant) {
+          await (this.favoriteService as FavoriteService).putRestaurant(this.restaurant);
+        }
+      } catch {
+        if (this.likeButton) {
+          this.likeButton.on = false;
+        }
       }
     } else {
-      await (this.favoriteService as FavoriteService).deleteRestaurant(this.restaurantId);
+      try {
+        await (this.favoriteService as FavoriteService).deleteRestaurant(this.restaurantId);
+      } catch {
+        if (this.likeButton) {
+          this.likeButton.on = true;
+        }
+      }
     }
   }
 

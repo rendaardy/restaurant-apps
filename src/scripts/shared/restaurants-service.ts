@@ -1,6 +1,6 @@
+import { injectable } from 'inversify';
 import { Restaurant, CustomerReview } from '../model/restaurant';
 import { IRestaurantService } from './restaurant-interface';
-import { injectable } from 'inversify';
 import { config } from './config';
 
 @injectable()

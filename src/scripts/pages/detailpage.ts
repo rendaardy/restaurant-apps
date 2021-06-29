@@ -1,5 +1,7 @@
 import '../../styles/detailpage.css';
 
+import './components/like-button';
+
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { Params, queryParentRouterSlot } from 'router-slot';
@@ -10,8 +12,6 @@ import { container } from '../shared/container';
 import { RestaurantService } from '../shared/restaurants-service';
 import { FavoriteService } from '../shared/favorite-service';
 import { LikeButton } from './components/like-button';
-
-import './components/like-button';
 
 @customElement('mb-detailpage')
 export default class DetailPage extends LitElement {
@@ -28,6 +28,7 @@ export default class DetailPage extends LitElement {
   likeButton?: LikeButton;
 
   restaurantId = '';
+
   location = '';
 
   constructor(

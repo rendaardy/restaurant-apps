@@ -7,7 +7,9 @@ Scenario('liking a restaurant', ({ I }) => {
 
   let firstRestaurantTitle: string = '';
   I.usePlaywrightTo('pierce through the Shadow DOM :)', async ({ page }: any) => {
-    firstRestaurantTitle = await page.textContent('mb-card:first-child .card__content:has(h3.card__title)');
+    firstRestaurantTitle = await page.textContent(
+      'mb-card:first-child .card__content:has(h3.card__title)'
+    );
     await page.click('mb-card:first-child .card__action:has(a.btn)');
   });
 

@@ -1,12 +1,12 @@
+import './components/card';
+import './components/dual-ring';
+
 import { LitElement, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 
 import { Restaurant } from '../model/restaurant';
 import { IRestaurantService, TYPES } from '../shared/restaurant-interface';
 import { container } from '../shared/container';
-
-import './components/card';
-import './components/dual-ring';
 
 @customElement('mb-homepage')
 export default class HomePage extends LitElement {

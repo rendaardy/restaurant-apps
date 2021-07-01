@@ -7,6 +7,7 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { Restaurant } from '../model/restaurant';
 import { IRestaurantService, TYPES } from '../shared/restaurant-interface';
 import { container } from '../shared/container';
+import { RestaurantService } from '../shared/restaurants-service';
 
 @customElement('mb-homepage')
 export default class HomePage extends LitElement {
@@ -54,7 +55,7 @@ export default class HomePage extends LitElement {
   async handleSearch(event: Event): Promise<void> {
     event.preventDefault();
     const query = (event.target as HTMLInputElement).value;
-    this.restaurants = await this.restaurantService.getRestaurants(query);
+    this.restaurants = await (this.restaurantService as RestaurantService).findRestaurants(query);
   }
 
   protected createRenderRoot(): Element | ShadowRoot {

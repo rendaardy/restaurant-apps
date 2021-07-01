@@ -8,7 +8,7 @@ export class RestaurantService implements IRestaurantService {
   async getRestaurants(query?: string): Promise<Restaurant[]> {
     let response: Response;
 
-    if (query) {
+    if (query && query.trim() !== '') {
       response = await fetch(`${config.baseUrl}/search?q=${query}`);
     } else {
       response = await fetch(`${config.baseUrl}/list`);
@@ -34,7 +34,7 @@ export class RestaurantService implements IRestaurantService {
   }
 
   async findRestaurants(query: string): Promise<Restaurant[]> {
-    const response = await fetch(`${config.baseUrl}/search?q=${query}`);
+    const response = await fetch(`${config.baseUrl}/search?q=${query.trim()}`);
 
     if (!response.ok) {
       throw new Error('Restaurant not found');

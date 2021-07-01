@@ -25,26 +25,6 @@ export class LikeButton extends LitElement {
     this.setAttribute('aria-label', label);
   }
 
-  static styles = css`
-    .btn-like {
-      background-color: transparent;
-      padding: 1.3rem;
-      border: none;
-      border-radius: 100px;
-      cursor: pointer;
-    }
-
-    .btn-like i.fa {
-      font-size: 2.5rem;
-      color: #810000;
-      transition-duration: 0.3s;
-    }
-
-    .btn-like i.fa:hover {
-      transform: translateY(-2px);
-    }
-  `;
-
   protected createRenderRoot(): Element | ShadowRoot {
     return this;
   }

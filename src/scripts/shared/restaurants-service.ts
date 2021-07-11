@@ -5,19 +5,8 @@ import { config } from './config';
 
 @injectable()
 export class RestaurantService implements IRestaurantService {
-<<<<<<< Updated upstream
-  async getRestaurants(query?: string): Promise<Restaurant[]> {
-    let response: Response;
-
-    if (query && query.trim() !== '') {
-      response = await fetch(`${config.baseUrl}/search?q=${query}`);
-    } else {
-      response = await fetch(`${config.baseUrl}/list`);
-    }
-=======
   async getRestaurants(): Promise<Restaurant[]> {
     const response = await fetch(`${config.baseUrl}/list`);
->>>>>>> Stashed changes
 
     if (!response.ok) {
       throw new Error('Failed to fetch list of restaurants');

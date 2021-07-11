@@ -7,6 +7,7 @@ import DetailPage from '../src/scripts/pages/detailpage';
 import { RestaurantService } from '../src/scripts/shared/restaurants-service';
 import { FavoriteService } from '../src/scripts/shared/favorite-service';
 import { CustomerReview, Restaurant } from '../src/scripts/model/restaurant';
+import { data } from './helpers/data';
 
 describe('Detail page', () => {
   let restaurantService: RestaurantService;
@@ -20,41 +21,9 @@ describe('Detail page', () => {
     favoriteService = new FavoriteService();
     detailPage = new DetailPage(restaurantService, favoriteService);
 
-    customerReviews = [
-      {
-        id: 'aaa',
-        name: 'Alice',
-        review: 'Test 1',
-        date: '1 October 1995',
-      },
-      {
-        id: 'bbb',
-        name: 'Bob',
-        review: 'Test 2',
-        date: '2 October 1995',
-      },
-      {
-        id: 'ccc',
-        name: 'Charlie',
-        review: 'Test 3',
-        date: '3 October 1995',
-      },
-    ];
+    customerReviews = data.customerReviews;
 
-    dummyRestaurant = {
-      id: '1',
-      name: 'Restaurant A',
-      city: 'Wakanda',
-      rating: 5,
-      description: '',
-      address: '',
-      smallPicture: '',
-      mediumPicture: '',
-      largePicture: '',
-      menus: { foods: [], drinks: [] },
-      categories: [],
-      customerReviews,
-    };
+    dummyRestaurant = { ...data.dummyRestaurants[0], customerReviews: data.customerReviews };
   });
 
   afterEach(() => {

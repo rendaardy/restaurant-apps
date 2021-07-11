@@ -5,6 +5,7 @@ import '../src/scripts/pages/homepage';
 import HomePage from '../src/scripts/pages/homepage';
 import { RestaurantService } from '../src/scripts/shared/restaurants-service';
 import { Restaurant } from '../src/scripts/model/restaurant';
+import { data } from './helpers/data';
 
 describe('Home page', () => {
   let restaurantService: RestaurantService;
@@ -15,78 +16,7 @@ describe('Home page', () => {
     restaurantService = new RestaurantService();
     homePage = new HomePage(restaurantService);
 
-    dummyRestaurants = [
-      {
-        id: '1',
-        name: 'Warung Seblak',
-        city: 'Wakanda',
-        rating: 5,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-      {
-        id: '2',
-        name: 'Warung Kopi',
-        city: 'Bali',
-        rating: 4,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-      {
-        id: '3',
-        name: 'Corner Caffe',
-        city: 'Megalodon',
-        rating: 3,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-      {
-        id: '4',
-        name: 'Restoran Padang',
-        city: 'Sunda Empire',
-        rating: 4.5,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-      {
-        id: '5',
-        name: 'Kafe Kita',
-        city: 'Korea Utara',
-        rating: 5,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-    ];
+    dummyRestaurants = data.dummyRestaurants;
   });
 
   afterEach(() => {

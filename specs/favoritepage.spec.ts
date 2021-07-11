@@ -5,6 +5,7 @@ import '../src/scripts/pages/favoritepage';
 import FavoritePage from '../src/scripts/pages/favoritepage';
 import { FavoriteService } from '../src/scripts/shared/favorite-service';
 import { Restaurant } from '../src/scripts/model/restaurant';
+import { data } from './helpers/data';
 
 describe('Favorite page', () => {
   let favoriteService: FavoriteService;
@@ -15,78 +16,7 @@ describe('Favorite page', () => {
     favoriteService = new FavoriteService();
     favoritePage = new FavoritePage(favoriteService);
 
-    dummyRestaurants = [
-      {
-        id: '1',
-        name: 'Warung Seblak',
-        city: 'Wakanda',
-        rating: 5,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-      {
-        id: '2',
-        name: 'Warung Kopi',
-        city: 'Bali',
-        rating: 4,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-      {
-        id: '3',
-        name: 'Corner Caffe',
-        city: 'Megalodon',
-        rating: 3,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-      {
-        id: '4',
-        name: 'Restoran Padang',
-        city: 'Sunda Empire',
-        rating: 4.5,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-      {
-        id: '5',
-        name: 'Kafe Kita',
-        city: 'Korea Utara',
-        rating: 5,
-        description: '',
-        address: '',
-        smallPicture: '',
-        mediumPicture: '',
-        largePicture: '',
-        menus: { foods: [], drinks: [] },
-        categories: [],
-        customerReviews: [],
-      },
-    ];
+    dummyRestaurants = data.dummyRestaurants;
   });
 
   afterEach(() => {
@@ -113,6 +43,8 @@ describe('Favorite page', () => {
     document.body.appendChild(favoritePage);
     await favoritePage.firstUpdated();
 
-    await expectAsync(favoriteService.getRestaurants()).toBeRejectedWith(new Error('failed to get all items'));
+    await expectAsync(favoriteService.getRestaurants()).toBeRejectedWith(
+      new Error('failed to get all items')
+    );
   });
 });

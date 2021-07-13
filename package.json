@@ -6,7 +6,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start-dev": "webpack serve --config webpack.dev.js",
+    "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "check": "tsc --noEmit",
     "test": "karma start",

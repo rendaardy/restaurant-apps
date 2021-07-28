@@ -13,8 +13,8 @@
     "e2e": "codeceptjs run --steps",
     "lint": "npx eslint \"{src,specs,e2e}/**/*.{js,mjs,ts,tsx}\" --fix",
     "fmt": "npx prettier --write \"{src,specs,e2e}/**/*.{js,mjs,ts,tsx,css,html}\"",
-    "build-image": "node sharp.js",
-    "optimize-image": "node imagemin.js"
+    "build-image": "node sharp.mjs",
+    "optimize-image": "node imagemin.mjs"
   },
   "keywords": [],
   "author": "Marenda S.A. <renda_ardy@tutanota.com>",

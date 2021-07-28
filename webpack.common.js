@@ -70,7 +70,7 @@ module.exports = {
       icons: [
         {
           src: path.resolve('src', 'icons', 'maskable_icon_x512.png'),
-          sizes: [48, 72, 96, 128, 192, 384, 512],
+          sizes: [48, 72, 96, 128, 144, 192, 384, 512],
           purpose: 'maskable',
           destination: path.join('images', 'icons'),
           ios: true,

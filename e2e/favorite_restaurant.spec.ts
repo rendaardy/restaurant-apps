@@ -1,24 +1,72 @@
+const assert = require('assert');
+
 Feature('favorite restaurant');
 
-Scenario('liking a restaurant', ({ I }) => {
+Before(({ I }) => {
   I.amOnPage('/');
-  I.see('Megabucket');
-  I.seeElement('.article-list__content > mb-card');
+});
 
-  let firstRestaurantTitle: string = '';
-  I.usePlaywrightTo('pierce through the Shadow DOM :)', async ({ page }: any) => {
-    firstRestaurantTitle = await page.textContent('mb-card:first-child .card__content:has(h3.card__title)');
+Scenario('adding 3 restaurants to favorite list and remove one of them', async ({ I }) => {
+  for (let i = 1; i <= 3; i++) {
+    I.usePlaywrightTo('click button on the card', async ({ page }: any) => {
+      await page.click(`mb-card:nth-child(${i}) .card__action:has(a.btn)`);
+    });
+    I.click('//mb-like-button');
+    I.amOnPage('/');
+  }
+
+  I.amOnPage('/favorite');
+  let favoriteMovies = await I.grabNumberOfVisibleElements('mb-card');
+  assert.strictEqual(3, favoriteMovies);
+
+  I.usePlaywrightTo('click button on the card', async ({ page }: any) => {
     await page.click('mb-card:first-child .card__action:has(a.btn)');
   });
 
-  I.see(firstRestaurantTitle);
-  I.seeElement('mb-like-button[aria-label="Like this restaurant"]');
-  I.dontSeeElement('mb-like-button[aria-label="Dislike this restaurant"]');
-
   I.click('//mb-like-button');
-  I.seeElement('mb-like-button[aria-label="Dislike this restaurant"]');
-  I.dontSeeElement('mb-like-button[aria-label="Like this restaurant"]');
 
   I.amOnPage('/favorite');
+  favoriteMovies = await I.grabNumberOfVisibleElements('mb-card');
+  assert.strictEqual(2, favoriteMovies);
+});
+
+Scenario('show list of restaurants in homepage', ({ I }) => {
+  I.see('Megabucket');
   I.seeElement('.article-list__content > mb-card');
+});
+
+Scenario('search restaurants by name which contains "Fairy Cafe"', ({ I }) => {
+  I.seeElement('input[name="q"]');
+  I.fillField('q', 'Fairy Cafe');
+  I.click('Search');
+
+  let firstFoundRestaurantTitle = '';
+
+  I.usePlaywrightTo('click button on the card', async ({ page }: any) => {
+    firstFoundRestaurantTitle = await page.textContent(
+      'mb-card:first-child .card__content h3.card__title'
+    );
+
+    assert.strictEqual('Fairy Cafe', firstFoundRestaurantTitle);
+  });
+});
+
+Scenario('send a review', async ({ I }) => {
+  I.usePlaywrightTo('click button on the card', async ({ page }: any) => {
+    await page.click('mb-card:first-child .card__action:has(a.btn)');
+  });
+
+  within('.customer-reviews__form', () => {
+    I.fillField('name', 'Jane');
+    I.fillField('review', 'Awesome');
+    I.click('Send');
+  });
+
+  I.seeElement('.customer-reviews__list');
+
+  const name = (await I.grabTextFrom('.customer-reviews__list li:last-child p:first-child')).split('-')[0];
+  const review = await I.grabTextFrom('.customer-reviews__list li:last-child p:last-child');
+
+  assert.strictEqual('Jane', name.trim());
+  assert.strictEqual('Awesome', review.trim());
 });

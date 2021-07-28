@@ -1,12 +1,13 @@
+import './components/card';
+import './components/dual-ring';
+
 import { LitElement, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 
 import { Restaurant } from '../model/restaurant';
 import { IRestaurantService, TYPES } from '../shared/restaurant-interface';
 import { container } from '../shared/container';
-
-import './components/card';
-import './components/dual-ring';
+import { RestaurantService } from '../shared/restaurants-service';
 
 @customElement('mb-homepage')
 export default class HomePage extends LitElement {
@@ -15,9 +16,6 @@ export default class HomePage extends LitElement {
 
   @query('.search-form > input[name="q"]')
   searchForm?: HTMLInputElement;
-
-  @query('.article-list__content')
-  articleListContent?: HTMLDivElement;
 
   @state()
   private showLoading = true;
@@ -53,8 +51,8 @@ export default class HomePage extends LitElement {
 
   async handleSearch(event: Event): Promise<void> {
     event.preventDefault();
-    const query = (event.target as HTMLInputElement).value;
-    this.restaurants = await this.restaurantService.getRestaurants(query);
+    const query = this.searchForm?.value ?? '';
+    this.restaurants = await (this.restaurantService as RestaurantService).findRestaurants(query);
   }
 
   protected createRenderRoot(): Element | ShadowRoot {
@@ -134,14 +132,13 @@ export default class HomePage extends LitElement {
 
   private searchInput(): unknown {
     return html`
-      <form class="search-form">
+      <form class="search-form" @submit="${this.handleSearch}">
         <input
           type="search"
           name="q"
           placeholder="Search restaurant"
-          @change="${this.handleSearch}"
         />
-        <button type="submit" class="btn is-black" @click="${this.handleSearch}">Search</button>
+        <button type="submit" class="btn is-black">Search</button>
       </form>
     `;
   }

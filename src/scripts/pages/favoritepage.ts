@@ -1,12 +1,12 @@
+import './components/card';
+import './components/dual-ring';
+
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 import { Restaurant } from '../model/restaurant';
 import { IFavoriteService, TYPES } from '../shared/restaurant-interface';
 import { container } from '../shared/container';
-
-import './components/card';
-import './components/dual-ring';
 
 @customElement('mb-favoritepage')
 export default class FavoritePage extends LitElement {

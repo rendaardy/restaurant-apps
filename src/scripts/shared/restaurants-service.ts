@@ -1,18 +1,12 @@
+import { injectable } from 'inversify';
 import { Restaurant, CustomerReview } from '../model/restaurant';
 import { IRestaurantService } from './restaurant-interface';
-import { injectable } from 'inversify';
 import { config } from './config';
 
 @injectable()
 export class RestaurantService implements IRestaurantService {
-  async getRestaurants(query?: string): Promise<Restaurant[]> {
-    let response: Response;
-
-    if (query) {
-      response = await fetch(`${config.baseUrl}/search?q=${query}`);
-    } else {
-      response = await fetch(`${config.baseUrl}/list`);
-    }
+  async getRestaurants(): Promise<Restaurant[]> {
+    const response = await fetch(`${config.baseUrl}/list`);
 
     if (!response.ok) {
       throw new Error('Failed to fetch list of restaurants');
@@ -34,7 +28,7 @@ export class RestaurantService implements IRestaurantService {
   }
 
   async findRestaurants(query: string): Promise<Restaurant[]> {
-    const response = await fetch(`${config.baseUrl}/search?q=${query}`);
+    const response = await fetch(`${config.baseUrl}/search?q=${query.trim()}`);
 
     if (!response.ok) {
       throw new Error('Restaurant not found');

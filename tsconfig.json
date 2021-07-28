@@ -12,6 +12,7 @@
     "strict": true,                              
     "moduleResolution": "node",                  
     "types": [
+      "node",
       "reflect-metadata",
       "jasmine",
       "codeceptjs"

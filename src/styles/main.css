@@ -5,12 +5,15 @@
   src: url('../fonts/Gagalin-Regular.otf');
 }
 
+:root {
+  font-size: 16px;
+  font-family: Roboto, 'Open Sans', sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 16px;
-  font-family: Roboto, 'Open Sans', sans-serif;
 }
 
 body {
@@ -216,8 +219,13 @@ mb-app {
   z-index: -1;
 }
 
+picture {
+  width: 100%;
+}
+
 .hero__bg-image {
   object-fit: cover;
+  object-position: center;
   height: min(60vh, 600px);
   width: 100%;
 }

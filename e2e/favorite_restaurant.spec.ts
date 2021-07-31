@@ -11,6 +11,7 @@ Scenario('adding 3 restaurants to favorite list and remove one of them', async (
     I.usePlaywrightTo('click button on the card', async ({ page }: any) => {
       await page.click(`mb-card:nth-child(${i}) .card__action:has(a.btn)`);
     });
+    I.wait(2);
     I.click('//mb-like-button');
     I.amOnPage('/');
   }
@@ -64,7 +65,9 @@ Scenario('send a review', async ({ I }) => {
 
   I.seeElement('.customer-reviews__list');
 
-  const name = (await I.grabTextFrom('.customer-reviews__list li:last-child p:first-child')).split('-')[0];
+  const name = (await I.grabTextFrom('.customer-reviews__list li:last-child p:first-child')).split(
+    '-'
+  )[0];
   const review = await I.grabTextFrom('.customer-reviews__list li:last-child p:last-child');
 
   assert.strictEqual('Jane', name.trim());

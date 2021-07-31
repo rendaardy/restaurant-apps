@@ -2,8 +2,8 @@ import { resolve } from 'path';
 import { mkdirSync, existsSync, readdirSync } from 'fs';
 import sharp from 'sharp';
 
-const target = resolve(__dirname, 'src', 'public', 'images', 'heros');
-const destination = resolve(__dirname, 'src', 'public', 'images', 'heroes');
+const target = resolve(process.cwd(), 'src', 'public', 'images', 'heros');
+const destination = resolve(process.cwd(), 'src', 'public', 'images', 'heroes');
 
 if (!existsSync(destination)) {
   mkdirSync(destination);

@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 
-import '../src/scripts/pages/homepage';
-
 import HomePage from '../src/scripts/pages/homepage';
+
+
 import { RestaurantService } from '../src/scripts/shared/restaurants-service';
 import { Restaurant } from '../src/scripts/model/restaurant';
 import { data } from './helpers/data';
@@ -118,9 +118,10 @@ describe('Home page', () => {
       await homePage.firstUpdated();
 
       const inputText = homePage.renderRoot.querySelector<HTMLInputElement>('input[name="q"]');
+      const searchForm = homePage.renderRoot.querySelector<HTMLFormElement>('form.search-form');
       if (inputText) {
         inputText.value = query;
-        inputText.dispatchEvent(new Event('change'));
+        searchForm?.dispatchEvent(new Event('submit'));
         await homePage.updateComplete;
         await homePage.updateComplete;
 

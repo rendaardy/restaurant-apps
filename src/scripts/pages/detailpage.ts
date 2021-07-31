@@ -1,17 +1,17 @@
 import '../../styles/detailpage.css';
 
-import './components/like-button';
 
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { Params, queryParentRouterSlot } from 'router-slot';
+import { LikeButton } from './components/like-button';
 
 import { Restaurant, CustomerReview } from '../model/restaurant';
 import { IRestaurantService, IFavoriteService, TYPES } from '../shared/restaurant-interface';
 import { container } from '../shared/container';
 import { RestaurantService } from '../shared/restaurants-service';
 import { FavoriteService } from '../shared/favorite-service';
-import { LikeButton } from './components/like-button';
+
 
 @customElement('mb-detailpage')
 export default class DetailPage extends LitElement {

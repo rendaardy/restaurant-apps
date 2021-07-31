@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 
-import '../src/scripts/pages/detailpage';
-
 import DetailPage from '../src/scripts/pages/detailpage';
+
+
 
 import { RestaurantService } from '../src/scripts/shared/restaurants-service';
 import { FavoriteService } from '../src/scripts/shared/favorite-service';

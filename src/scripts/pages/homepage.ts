@@ -133,11 +133,7 @@ export default class HomePage extends LitElement {
   private searchInput(): unknown {
     return html`
       <form class="search-form" @submit="${this.handleSearch}">
-        <input
-          type="search"
-          name="q"
-          placeholder="Search restaurant"
-        />
+        <input type="search" name="q" placeholder="Search restaurant" />
         <button type="submit" class="btn is-black">Search</button>
       </form>
     `;

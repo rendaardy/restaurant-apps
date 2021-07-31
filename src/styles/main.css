@@ -256,7 +256,8 @@ picture {
 
 .search-form input[type='search'] {
   width: 60%;
-  padding: 0.8rem;
+  font-size: 1rem;
+  padding: 1rem;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border: none;
@@ -268,7 +269,7 @@ picture {
   border: none;
   border-left: 1px solid rgba(0, 0, 0, 0.3);
   font-weight: 700;
-  padding: 0.8;
+  padding: 1rem;
 }
 
 .article-list__content {

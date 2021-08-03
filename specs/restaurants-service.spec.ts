@@ -37,6 +37,7 @@ describe('Restaurant service', () => {
     });
 
     const result: Restaurant[] = await restaurantService.getRestaurants();
+
     expect(jasmine.Ajax.requests.mostRecent().status).toEqual(200);
     expect(result.length).toEqual(data.dummyRestaurants.length);
   });
@@ -53,6 +54,7 @@ describe('Restaurant service', () => {
     });
 
     await expectAsync(restaurantService.getRestaurants()).toBeRejected();
+
     expect(jasmine.Ajax.requests.mostRecent().status).toEqual(404);
   });
 
@@ -66,6 +68,7 @@ describe('Restaurant service', () => {
     });
 
     const result: Restaurant = await restaurantService.getRestaurant('1');
+
     expect(jasmine.Ajax.requests.mostRecent().status).toEqual(200);
     expect(result.name).toEqual(data.dummyRestaurants[0].name);
   });
@@ -82,6 +85,7 @@ describe('Restaurant service', () => {
     });
 
     await expectAsync(restaurantService.getRestaurant('1')).toBeRejected();
+
     expect(jasmine.Ajax.requests.mostRecent().status).toEqual(404);
   });
 
@@ -98,6 +102,7 @@ describe('Restaurant service', () => {
     });
 
     const result: Restaurant[] = await restaurantService.findRestaurants('Warung');
+
     expect(jasmine.Ajax.requests.mostRecent().status).toEqual(200);
     expect(result.length).toEqual(filteredRestaurants.length);
   });
@@ -110,6 +115,7 @@ describe('Restaurant service', () => {
     });
 
     await expectAsync(restaurantService.findRestaurants(query)).toBeRejected();
+
     expect(jasmine.Ajax.requests.mostRecent().status).toEqual(404);
   });
 
@@ -123,6 +129,7 @@ describe('Restaurant service', () => {
     });
 
     await expectAsync(restaurantService.postReview(data.customerReviews[0])).toBeResolved();
+
     expect(jasmine.Ajax.requests.mostRecent().status).toEqual(200);
   });
 
@@ -138,6 +145,7 @@ describe('Restaurant service', () => {
     });
 
     await expectAsync(restaurantService.postReview(data.customerReviews[0])).toBeRejected();
+
     expect(jasmine.Ajax.requests.mostRecent().status).toEqual(500);
   });
 });

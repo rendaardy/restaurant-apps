@@ -31,10 +31,11 @@ describe('Home page', () => {
     document.body.appendChild(homePage);
     await homePage.firstUpdated();
 
-    expect(restaurantService.getRestaurants).toHaveBeenCalled();
+    expect(restaurantService.getRestaurants).toHaveBeenCalledWith();
 
     const articleListContent =
       homePage.renderRoot.querySelector<HTMLDivElement>('.article-list__content');
+
     expect(articleListContent?.children.length).toEqual(5);
   });
 
@@ -52,6 +53,7 @@ describe('Home page', () => {
 
     const articleListContent =
       homePage.renderRoot.querySelector<HTMLDivElement>('.article-list__content');
+
     expect(articleListContent?.childElementCount).toEqual(0);
   });
 
@@ -71,6 +73,7 @@ describe('Home page', () => {
 
         const articleListContent =
           homePage.renderRoot.querySelector<HTMLDivElement>('.article-list__content');
+
         expect(articleListContent?.childElementCount).toEqual(5);
 
         inputText.value = ' ';
@@ -127,6 +130,7 @@ describe('Home page', () => {
 
         const articleListContent =
           homePage.renderRoot.querySelector<HTMLDivElement>('.article-list__content');
+
         expect(articleListContent?.childElementCount).toEqual(2);
       } else {
         // Make this text fail
@@ -152,7 +156,7 @@ describe('Home page', () => {
         await homePage.updateComplete;
         await homePage.updateComplete;
 
-        expect(restaurantService.getRestaurants).toHaveBeenCalled();
+        expect(restaurantService.getRestaurants).toHaveBeenCalledWith();
         await expectAsync(restaurantService.findRestaurants(query)).toBeRejectedWith(
           new Error('failed to search for restaurants')
         );

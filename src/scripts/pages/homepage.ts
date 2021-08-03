@@ -22,14 +22,14 @@ export default class HomePage extends LitElement {
 
   constructor(private restaurantService: IRestaurantService) {
     super();
-  }
-
-  connectedCallback(): void {
-    super.connectedCallback();
 
     if (!this.restaurantService) {
       this.restaurantService = container.get<IRestaurantService>(TYPES.RESTAURANT_SERVICE);
     }
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
 
     // Set skip content button
     const skipContent = document.querySelector<HTMLAnchorElement>('.skip-content');
@@ -51,8 +51,8 @@ export default class HomePage extends LitElement {
 
   async handleSearch(event: Event): Promise<void> {
     event.preventDefault();
-    const query = this.searchForm?.value ?? '';
-    this.restaurants = await (this.restaurantService as RestaurantService).findRestaurants(query);
+    const searchQuery = this.searchForm?.value ?? '';
+    this.restaurants = await (this.restaurantService as RestaurantService).findRestaurants(searchQuery);
   }
 
   protected createRenderRoot(): Element | ShadowRoot {

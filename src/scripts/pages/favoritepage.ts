@@ -18,14 +18,14 @@ export default class FavoritePage extends LitElement {
 
   constructor(private favoriteService: IFavoriteService) {
     super();
-  }
-
-  connectedCallback(): void {
-    super.connectedCallback();
 
     if (!this.favoriteService) {
       this.favoriteService = container.get<IFavoriteService>(TYPES.FAVORITE_SERVICE);
     }
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
 
     // Set skip content button
     const skipContent = document.querySelector<HTMLAnchorElement>('.skip-content');

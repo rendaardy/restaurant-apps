@@ -15,12 +15,11 @@ async function registerSW(): Promise<void> {
   if ('serviceWorker' in navigator) {
     try {
       await navigator.serviceWorker.register('/service-worker.js');
-      console.log('service worker registered');
     } catch (err) {
-      console.log('service worker registration failed', err);
+      throw new Error(err);
     }
   } else {
-    console.log('Your browser does not support service worker');
+    throw new Error('Your browser does not support service worker');
   }
 }
 

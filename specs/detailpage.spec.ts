@@ -122,6 +122,7 @@ describe('Detail page', () => {
       expect(restaurantService.getRestaurant).toHaveBeenCalledWith('1');
 
       const likeButton = detailPage.renderRoot.querySelector('mb-like-button');
+
       expect(likeButton?.getAttribute('aria-label')).toEqual('Like this restaurant');
 
       likeButton?.dispatchEvent(new Event('click'));
@@ -146,6 +147,7 @@ describe('Detail page', () => {
       expect(restaurantService.getRestaurant).toHaveBeenCalledWith('1');
 
       const likeButton = detailPage.renderRoot.querySelector('mb-like-button');
+
       expect(likeButton?.getAttribute('aria-label')).toEqual('Like this restaurant');
 
       likeButton?.dispatchEvent(new Event('click'));
@@ -169,6 +171,7 @@ describe('Detail page', () => {
       expect(favoriteService.getRestaurant).toHaveBeenCalledWith('1');
 
       const likeButton = detailPage.renderRoot.querySelector('mb-like-button');
+
       expect(likeButton?.getAttribute('aria-label')).toEqual('Dislike this restaurant');
 
       likeButton?.dispatchEvent(new Event('click'));
@@ -193,6 +196,7 @@ describe('Detail page', () => {
       expect(favoriteService.getRestaurant).toHaveBeenCalledWith('1');
 
       const likeButton = detailPage.renderRoot.querySelector('mb-like-button');
+
       expect(likeButton?.getAttribute('aria-label')).toEqual('Dislike this restaurant');
 
       likeButton?.dispatchEvent(new Event('click'));
@@ -219,6 +223,7 @@ describe('Detail page', () => {
 
       const customerReviewList =
         detailPage.renderRoot.querySelector<HTMLUListElement>('.customer-reviews__list');
+
       expect(customerReviewList?.childNodes.length).not.toEqual(0);
     });
 
@@ -255,6 +260,7 @@ describe('Detail page', () => {
 
         const customerReviewList =
           detailPage.renderRoot.querySelector<HTMLUListElement>('.customer-reviews__list');
+
         expect(customerReviewList?.childElementCount).toEqual(4);
       }
     });

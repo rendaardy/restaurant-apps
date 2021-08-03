@@ -7,6 +7,7 @@ Before(({ I }) => {
 });
 
 Scenario('adding 3 restaurants to favorite list and remove one of them', async ({ I }) => {
+  // eslint-disable-next-line no-plusplus
   for (let i = 1; i <= 3; i++) {
     I.usePlaywrightTo('click button on the card', async ({ page }: any) => {
       await page.click(`mb-card:nth-child(${i}) .card__action:has(a.btn)`);

@@ -36,15 +36,15 @@ export default class DetailPage extends LitElement {
     private favoriteService: IFavoriteService
   ) {
     super();
-  }
-
-  connectedCallback(): void {
-    super.connectedCallback();
 
     if (!this.restaurantService && !this.favoriteService) {
       this.restaurantService = container.get<IRestaurantService>(TYPES.RESTAURANT_SERVICE);
       this.favoriteService = container.get<IFavoriteService>(TYPES.FAVORITE_SERVICE);
     }
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
 
     if (!this.restaurantId || this.restaurantId === '') {
       this.restaurantId = this.params?.id ?? '';

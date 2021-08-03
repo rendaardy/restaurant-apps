@@ -17,14 +17,16 @@ describe('Favorite service', () => {
     spyOn(favoriteService, 'getRestaurants').and.resolveTo(dummyRestaurants);
 
     await expectAsync(favoriteService.getRestaurants()).toBeResolvedTo(dummyRestaurants);
-    expect(favoriteService.getRestaurants).toHaveBeenCalled();
+
+    expect(favoriteService.getRestaurants).toHaveBeenCalledWith();
   });
 
   it('should fail to get restaurants from database', async () => {
     spyOn(favoriteService, 'getRestaurants').and.rejectWith(new Error('failed to get data'));
 
     await expectAsync(favoriteService.getRestaurants()).toBeRejectedWithError('failed to get data');
-    expect(favoriteService.getRestaurants).toHaveBeenCalled();
+
+    expect(favoriteService.getRestaurants).toHaveBeenCalledWith();
   });
 
   it('should find restaurants with certain query', async () => {
@@ -34,6 +36,7 @@ describe('Favorite service', () => {
     spyOn(favoriteService, 'getRestaurants').withArgs(query).and.resolveTo(filteredRestaurants);
 
     await expectAsync(favoriteService.getRestaurants(query)).toBeResolvedTo(filteredRestaurants);
+
     expect(favoriteService.getRestaurants).toHaveBeenCalledWith(query);
   });
 
@@ -47,6 +50,7 @@ describe('Favorite service', () => {
     await expectAsync(favoriteService.getRestaurants(query)).toBeRejectedWithError(
       'failed to get data'
     );
+
     expect(favoriteService.getRestaurants).toHaveBeenCalledWith(query);
   });
 
@@ -54,6 +58,7 @@ describe('Favorite service', () => {
     spyOn(favoriteService, 'getRestaurant').withArgs('1').and.resolveTo(dummyRestaurants[0]);
 
     await expectAsync(favoriteService.getRestaurant('1')).toBeResolvedTo(dummyRestaurants[0]);
+
     expect(favoriteService.getRestaurant).toHaveBeenCalledWith('1');
   });
 
@@ -65,6 +70,7 @@ describe('Favorite service', () => {
     await expectAsync(favoriteService.getRestaurant('1')).toBeRejectedWithError(
       'failed to get data'
     );
+
     expect(favoriteService.getRestaurant).toHaveBeenCalledWith('1');
   });
 
@@ -72,6 +78,7 @@ describe('Favorite service', () => {
     spyOn(favoriteService, 'putRestaurant').withArgs(dummyRestaurants[0]).and.resolveTo();
 
     await expectAsync(favoriteService.putRestaurant(dummyRestaurants[0])).toBeResolved();
+
     expect(favoriteService.putRestaurant).toHaveBeenCalledWith(dummyRestaurants[0]);
   });
 
@@ -83,6 +90,7 @@ describe('Favorite service', () => {
     await expectAsync(favoriteService.putRestaurant(dummyRestaurants[0])).toBeRejectedWithError(
       'failed to store data'
     );
+
     expect(favoriteService.putRestaurant).toHaveBeenCalledWith(dummyRestaurants[0]);
   });
 
@@ -90,6 +98,7 @@ describe('Favorite service', () => {
     spyOn(favoriteService, 'deleteRestaurant').withArgs('1').and.resolveTo();
 
     await expectAsync(favoriteService.deleteRestaurant('1')).toBeResolved();
+
     expect(favoriteService.deleteRestaurant).toHaveBeenCalledWith('1');
   });
 
@@ -101,6 +110,7 @@ describe('Favorite service', () => {
     await expectAsync(favoriteService.deleteRestaurant('1')).toBeRejectedWithError(
       'failed to delete data'
     );
+
     expect(favoriteService.deleteRestaurant).toHaveBeenCalledWith('1');
   });
 });

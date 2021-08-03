@@ -31,9 +31,10 @@ describe('Favorite page', () => {
     document.body.appendChild(favoritePage);
     await favoritePage.firstUpdated();
 
-    expect(favoriteService.getRestaurants).toHaveBeenCalled();
+    expect(favoriteService.getRestaurants).toHaveBeenCalledWith();
 
     const articleListContent = favoritePage.renderRoot.querySelector('.article-list__content');
+
     expect(articleListContent?.childElementCount).toEqual(5);
   });
 

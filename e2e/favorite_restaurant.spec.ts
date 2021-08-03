@@ -63,6 +63,8 @@ Scenario('send a review', async ({ I }) => {
     I.click('Send');
   });
 
+  I.wait(3);
+
   I.seeElement('.customer-reviews__list');
 
   const name = (await I.grabTextFrom('.customer-reviews__list li:last-child p:first-child')).split(

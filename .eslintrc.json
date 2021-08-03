@@ -2,11 +2,15 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "node": true
+        "node": true,
+        "jasmine": true,
+        "codeceptjs/codeceptjs": true
     },
     "extends": [
         "airbnb-base",
-        "prettier"
+        "prettier",
+        "plugin:jasmine/recommended",
+        "plugin:codeceptjs/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -14,7 +18,9 @@
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "jasmine",
+        "codeceptjs"
     ],
     "rules": {
       "no-undef": "warn",
@@ -23,7 +29,9 @@
       "import/no-unresolved": "off",
       "import/extensions": "off",
       "import/prefer-default-export": "off",
+      "import/no-extraneous-dependencies": "off",
       "no-restricted-syntax": "off",
+      "no-restricted-globals": "off",
       "class-methods-use-this": "off"
     }
 }

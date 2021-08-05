@@ -209,7 +209,7 @@ export default class DetailPage extends LitElement {
 
   private customerReviewForm(): unknown {
     return html`
-      <h3 class="display-3">Write your review</h3>
+      <h3 class="display-3">Leave a review</h3>
       <form class="customer-reviews__form" @submit="${this.onSubmitCustomerReview}">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your name" required />

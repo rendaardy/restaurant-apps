@@ -77,7 +77,7 @@
     "lit": "^2.0.0-rc.2",
     "reflect-metadata": "^0.1.13",
     "router-slot": "^1.5.4",
-    "workbox-cacheable-response": "^6.2.4",
+    "workbox-cacheable-response": "^6.3.0",
     "workbox-core": "^6.2.4",
     "workbox-expiration": "^6.2.4",
     "workbox-precaching": "^6.2.4",

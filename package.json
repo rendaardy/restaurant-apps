@@ -72,7 +72,7 @@
   },
   "dependencies": {
     "flexible-rating": "github:rendaardy/flexible-rating#0c956f83051ecc42fe416b7c704a9c83cc66714e",
-    "idb": "^6.1.2",
+    "idb": "^6.1.3",
     "inversify": "^5.1.1",
     "lit": "^2.0.0-rc.2",
     "reflect-metadata": "^0.1.13",
